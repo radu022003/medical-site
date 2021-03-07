@@ -1,0 +1,26 @@
+  <div class="container">
+    <form [formGroup]="newContactForm" (ngSubmit)="sendContact(newContactForm.value)" autocomplete="off">
+      <div class="form-group" [ngClass]="{'error': name.invalid && (name.dirty || name.touched)}">
+        <label for="name">Nume:</label>
+        <em *ngIf="name.invalid && (name.dirty || name.touched)">Necesar</em>
+        <input formControlName="name" id="name" type="text" class="form-control" placeholder="Prenume Nume" (change)="checkIfDirty()" />
+      </div>
+      <div class="form-group" [ngClass]="{'error': email.invalid && (email.dirty || email.touched) }">
+        <label for="email">Email:</label>
+        <em *ngIf="email.invalid && (email.dirty || email.touched) ">Necesar</em>
+        <em *ngIf="email.invalid && (email.dirty || email.touched) && email.errors?.pattern">Formatul este greșit</em>
+        <input formControlName="email" id="email" type="text" class="form-control" placeholder="Email" (change)="checkIfDirty()" />
+      </div>
+      
+      <div class="form-group" [ngClass]="{'error': message.invalid && (message.dirty || message.touched) }">
+        <label for="message">Mesaj:</label>
+        <em *ngIf="message.invalid && (message.dirty || message.touched) && message?.errors.required">Necesar</em>
+        <em *ngIf="message.invalid && (message.dirty || message.touched) && message?.errors.maxLength">Mai mult de 400 caractere</em>
+        <em *ngIf="message.invalid && (message.dirty || message.touched) && message?.errors.minLength">Prea puține caractere</em>
+        <em *ngIf="message.invalid && (message.dirty || message.touched) && message?.errors.restrictedWords">Conține cuvinte nepermise</em>
+        <textarea formControlName="message" id="message" rows=3 class="form-control" placeholder="Mesajul" (change)="checkIfDirty()"></textarea>
+      </div>
+      <button type="submit" [disabled]="newContactForm.invalid" class="btn btn-primary">Trimite</button>
+      <button type="button" class="btn btn-default" (click)="cancel()">Anulează</button>
+    </form>
+  </div>

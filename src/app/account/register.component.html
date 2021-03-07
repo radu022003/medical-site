@@ -1,0 +1,43 @@
+﻿<div class="card">
+    <h4 class="card-header">Înregistrare</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="firstName">Prenume</label>
+                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">Prenumele este obligatoriu</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nume</label>
+                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Numele este obligatoriu</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Utilizator</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Utilizatorul este obligatoriu</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Parola</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Parola este obligatorie</div>
+                    <div *ngIf="f.password.errors.minlength">Parola trebuie să conțină minim 6 caractere</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-outline-success btn-sm">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Înregistrează
+                </button>
+                <a id="cancel" routerLink="../login" class="btn btn-outline-danger btn-sm">Anulează</a>
+            </div>
+        </form>
+    </div>
+</div>

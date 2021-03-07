@@ -1,0 +1,86 @@
+
+<div class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']" >MedConsult</a>
+    <button
+      (click)="status=!status"
+      [ngClass]="status ? 'change' : ''"
+      class="navbar-toggler navbar-right"
+      type="button"
+      data-toggle="collapse"
+      data-target="#someContentHere"
+      aria-controls="someContentHere"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="nav-icon-container" >
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </button>
+    <div class="collapse navbar-collapse" id="someContentHere">
+      <ul class="nav navbar-nav">
+        <li class="nav-item" [routerLink]="['/home']" routerLinkActive="active">
+          
+          <a class="nav-link ">
+            <i class="fa fa-home active"  aria-hidden="true"></i>
+            Acasă </a
+          >
+        </li>
+        <li class="nav-item" [routerLink]="['/about']" routerLinkActive="active">
+          <a class="nav-link" >
+            <i class="fa fa-info-circle"  aria-hidden="true"></i>
+            Despre noi</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+          <i class="fa fa-globe"  aria-hidden="true"></i>
+            Servicii
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/404']">Asistență</a>
+            <a class="dropdown-item" [routerLink]="['/404']">Consiliere</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/404']" >Altele</a>
+          </div>
+        </li>
+        <li class="nav-item" [routerLink]="['/contact']" routerLinkActive="active">
+          <a class="nav-link">
+            <i class="fa fa-envelope"  aria-hidden="true"></i>
+            Contactați-ne</a>
+        </li>
+      </ul>
+      
+      <form id="searchForm" class="form-inline my-2 my-lg-0 ">
+        <div class="form-group ">
+          <input
+            class="form-control form-control-sm"
+            type="search"
+            placeholder="Caută"
+            aria-label="Caută"
+          />
+        </div>
+        <button class="btn btn-outline-success btn-sm" type="submit">
+            Caută
+        </button>
+      </form>
+
+      <div class="navbar-header navbar-right">
+        <ul class="nav navbar-nav">
+          <li>
+            <a class="btn btn-outline-success btn-sm" [routerLink]="['/account/login']">Autentificare</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

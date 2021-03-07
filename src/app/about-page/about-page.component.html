@@ -1,0 +1,16 @@
+<div class="container">
+    <section id="about_us" class="container-fluid">
+        <ul class="nav nav-tabs text-center " id="content-tabs">
+          <li class="nav-item col-md-3 mx-auto px-auto">
+            <a class="nav-link active text-decoration-none" (click)="displayInfo($event)">Profil</a>  
+          </li>
+          <li class="nav-item col-md-3 mx-auto px-auto">
+            <a class="nav-link text-decoration-none" (click)="displayInfo($event)">Experiență</a>       
+          </li>
+          <li class="nav-item col-md-3 mx-auto px-auto">
+            <a class="nav-link text-decoration-none" (click)="displayInfo($event)">Viziune</a>      
+          </li>
+        </ul>
+        <about-thumbnail [content]="content" [link]="imgSrc"></about-thumbnail>
+    </section>
+</div>
