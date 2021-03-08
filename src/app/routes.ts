@@ -7,11 +7,10 @@ import { HomeComponent } from './home-page/home-page.component'
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 
 export const appRoutes:Routes = [
-
     {path: 'home', component: HomeComponent, data: {reuse: true}},
     {path: 'contact', component: ContactComponent,canDeactivate:["canDeactivateContact"]},
     {path: 'about', component: AboutComponent, data: {reuse: true}},
     {path: 'account', loadChildren: accountModule },
     {path: '404', component: Error404Component},
-    {path: '', redirectTo: '/home', pathMatch: 'full'}
+    {path: '**', redirectTo: 'home', pathMatch:"full"}
 ]
