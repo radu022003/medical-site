@@ -16,11 +16,16 @@ import {
   ContactService,
   CardComponent
 } from "./shared/index";
+import { fakeBackendProvider } from "./_helpers/fake-backend";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouteReuseService } from "./RouteReuseService";
 import {appRoutes} from './routes';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AccountModule } from "@app/account/account.module";
+import { AccountService } from "@app/_services/account.service";
+import { UserDetailsComponent } from './user-details/user-details.component';
+
+
 
 
 @NgModule({
@@ -34,7 +39,8 @@ import { AccountModule } from "@app/account/account.module";
     AboutComponent,
     AboutThumbnailComponent,
     AppFooterComponent,
-    CardComponent
+    CardComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,7 @@ import { AccountModule } from "@app/account/account.module";
   ],
   providers: [
     ContactService,
+    AccountService,
     {
       provide: 'canDeactivateContact',
       useValue: checkContactForm
@@ -56,6 +63,7 @@ import { AccountModule } from "@app/account/account.module";
       },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
   ],
   bootstrap: [MedicalAppComponent]
 })

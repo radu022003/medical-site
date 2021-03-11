@@ -12,7 +12,6 @@ export class ContactService{
     }
 
     sendEmail(contact: IContact){
-        console.log(contact);
         const url = "/api/sendEmail";
         const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
         return this.http.post(url, contact, options)

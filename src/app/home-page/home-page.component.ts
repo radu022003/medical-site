@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit{
     cards: CardComponent[]
 
     constructor(){
-        console.log('create component');
         let card1 = new CardComponent();
         card1.title = "Titlu1 Nou";
         card1.content = "Nou conținut pentru cardul1"

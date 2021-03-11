@@ -1,38 +1,64 @@
 ﻿<div class="card">
     <h4 class="card-header">Înregistrare</h4>
     <div class="card-body">
+        <alert></alert>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="firstName">Prenume</label>
-                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">Prenumele este obligatoriu</div>
-                </div>
+                <em *ngIf="f.firstName.invalid && (f.firstName.dirty || f.firstName.touched) ">Câmp obligatoriu</em>
+                <em *ngIf="f.firstName.invalid && (f.firstName.dirty || f.firstName.touched) && f.firstName.errors?.pattern">Formatul este greșit</em>
+                <input
+                    type="text"
+                    formControlName="firstName"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': f.firstName.invalid && (f.firstName.dirty || f.firstName.touched )}"
+                    (change)="checkIfDirty()"/>
             </div>
             <div class="form-group">
                 <label for="lastName">Nume</label>
-                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.lastName.errors.required">Numele este obligatoriu</div>
-                </div>
+                <em *ngIf="f.lastName.invalid && (f.lastName.dirty || f.lastName.touched) ">Câmp obligatoriu</em>
+                <em *ngIf="f.lastName.invalid && (f.lastName.dirty || f.lastName.touched) && f.lastName.errors?.pattern">Formatul este greșit</em>
+                <input
+                    type="text"
+                    formControlName="lastName"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': f.lastName.invalid && (f.lastName.dirty || f.lastName.touched ) }"
+                    (change)="checkIfDirty()"/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <em *ngIf="f.email.invalid && (f.email.dirty || f.email.touched) ">Câmp obligatoriu</em>
+                <em *ngIf="f.email.invalid && (f.email.dirty || f.email.touched) && f.email.errors?.pattern">Formatul este greșit</em>
+                <input
+                    type="text"
+                    formControlName="email"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': f.email.invalid && (f.email.dirty || f.email.touched ) }"
+                    (change)="checkIfDirty()"/>
             </div>
             <div class="form-group">
                 <label for="username">Utilizator</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Utilizatorul este obligatoriu</div>
-                </div>
+                <em *ngIf="f.username.invalid && (f.username.dirty || f.username.touched) ">Câmp obligatoriu</em>
+                <input 
+                    type="text"
+                    formControlName="username"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': f.username.invalid && (f.username.dirty || f.username.touched ) }"
+                    (change)="checkIfDirty()"/>
             </div>
             <div class="form-group">
                 <label for="password">Parola</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Parola este obligatorie</div>
-                    <div *ngIf="f.password.errors.minlength">Parola trebuie să conțină minim 6 caractere</div>
-                </div>
+                <em *ngIf="f.password.invalid && (f.password.dirty || f.password.touched) && f.password?.errors.required">Câmp obligatoriu</em>
+                <em *ngIf="f.password.invalid && (f.password.dirty || f.password.touched) && f.password?.errors.minLength">Prea puține caractere, minim 6</em>
+                <input 
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': f.password.invalid && (f.password.dirty || f.password.touched ) }"
+                    (change)="checkIfDirty()" />
             </div>
             <div class="form-group">
-                <button [disabled]="loading" class="btn btn-outline-success btn-sm">
+                <button [disabled]="form.invalid" class="btn btn-outline-success btn-sm">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Înregistrează
                 </button>

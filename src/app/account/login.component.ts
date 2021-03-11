@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    isDirty = true;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -26,15 +27,21 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.form = this.formBuilder.group({
             username: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', [Validators.required, Validators.minLength(6)]]
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
+
+
+    //check if some form fields are dirty, used if form is canceled 
+    checkIfDirty(){
+        this.isDirty = this.f.username.valid && this.f.username.dirty || this.f.password.valid && this.f.password.dirty;
+    }
 
     onSubmit() {
         this.submitted = true;

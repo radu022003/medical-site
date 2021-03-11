@@ -2,6 +2,7 @@
 import { Router } from '@angular/router';
 
 import { AccountService } from '@app/_services';
+import { AlertComponent } from "@app/_components/alert.component";
 
 @Component({ 
     templateUrl: 'layout.component.html',
@@ -14,7 +15,7 @@ export class LayoutComponent {
     ) {
         // redirect to home if already logged in
         if (this.accountService.userValue) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/home']);
         }
     }
 }
